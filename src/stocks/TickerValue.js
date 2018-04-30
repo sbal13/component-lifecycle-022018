@@ -2,41 +2,33 @@ import React from 'react'
 
 class TickerValue extends React.Component {
 
-	state = {
-		color: "black",
-		symbol: ""
-	}
-
-	componentWillReceiveProps(nextProps){
-		if (this.props.value < nextProps.value){
-			this.setState({
-				color: "green",
-				symbol: "+"
-			})
-		} else if(this.props.value > nextProps.value){
-			this.setState({
-				color: "red",
-				symbol: "-"
-			})
-		}
-
-	}
-
-	shouldComponentUpdate(nextProps, nextState){
-		return Math.abs(this.props.value - nextProps.value) > 10
-	}
+  state = {
+    color: "black"
+  }
 
 
-	render(){
-		let style = {color: this.state.color}
+  componentWillReceiveProps(nextProps){
 
-		return(
-			<div style={style}> 
-				{this.props.value}
-				{this.state.symbol}
-			</div>
-		)
-	}
+    let newColor = nextProps.number >= this.props.number ? "limegreen" : "red"
+
+    this.setState({
+      color: newColor
+    })
+  }
+
+  shouldComponentUpdate(nextProps){
+    console.log(nextProps)
+    return Math.abs(this.props.number - nextProps.number) > 15
+  }
+
+  render(){
+    return(
+      <div style={{color: this.state.color}}>
+        {this.props.number}
+      </div>
+    )
+  }
+
 }
 
 export default TickerValue

@@ -1,27 +1,26 @@
 import React from 'react'
 import Ticker from './Ticker'
+import Ticker2 from './Ticker2'
 
 class MainPage extends React.Component {
-	// constructor(){
-	// 	super()
-	// 	console.log("CONSTRUCTOR main")
-	// }
 
-	// componentWillMount(){
-	// 	console.log("WILL main")
-	// }
+	state = {}
 
-	// componentDidMount(){
-	// 	console.log("DID main")
-	// }
-	
+	componentDidMount(){
+		setTimeout(() => {
+			this.setState({ done: true })
+		}, 5000);
+	}
+
+
 	render(){
 		return (
-				<Ticker />
+			 this.state.done ? "" : <Ticker /> 
 		)
 	}
 
 
 }
+
 
 export default MainPage
